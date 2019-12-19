@@ -1,0 +1,3 @@
+hvac
+google-auth
+google-cloud-storage
