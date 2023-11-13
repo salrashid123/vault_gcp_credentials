@@ -9,6 +9,7 @@ require (
 	github.com/hashicorp/vault/api v1.0.4 // indirect
 	github.com/pquerna/cachecontrol v0.0.0-20180517163645-1555304b9b35 // indirect
 	github.com/salrashid123/oauth2 v0.0.0-20191203202548-5d02cdf0be15 // indirect
+	github.com/salrashid123/oauth2/vault v0.0.0-20231030115218-46b7568312c6 // indirect
 	golang.org/x/oauth2 v0.0.0-20191202225959-858c2ad4c8b6 // indirect
 	google.golang.org/api v0.15.0 // indirect
 	google.golang.org/genproto v0.0.0-20191216205247-b31c10ee225f // indirect

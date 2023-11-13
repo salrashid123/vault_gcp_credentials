@@ -8,7 +8,7 @@ import (
 
 	"golang.org/x/oauth2"
 
-	sal "github.com/salrashid123/oauth2/google"
+	sal "github.com/salrashid123/oauth2/vault"
 
 	"github.com/golang/glog"
 
@@ -28,25 +28,20 @@ func main() {
 
 	tokenSource, err := sal.VaultTokenSource(
 		&sal.VaultTokenConfig{
-			VaultToken:  "s.Mp3to4vHdFuaYBJVdY50saUB",
+			VaultToken:  "s.mwkBs0T0jt9rfBZ61mmxzRYi",
 			VaultPath:   "gcp/token/my-token-roleset",
-			VaultCAcert: "/apps/vault/crt_vault.pem",
-			VaultAddr:   "https://grpc.domain.com:8200",
+			VaultCAcert: "../certs/tls-ca-chain.pem",
+			VaultAddr:   "https://vault.domain.com:8200",
 		},
 	)
 
-	// tok, err := kmsTokenSource.Token()
-	// if err != nil {
-	// 	log.Fatal(err)
-	// }
-	// log.Printf("Token: %v", tok.AccessToken)
 	client := &http.Client{
 		Transport: &oauth2.Transport{
 			Source: tokenSource,
 		},
 	}
 
-	url := "https://storage.googleapis.com/storage/v1/b/clamav-241815/o"
+	url := "https://storage.googleapis.com/storage/v1/b/core-eso-bucket/o"
 	resp, err := client.Get(url)
 	if err != nil {
 		glog.Fatal(err)
@@ -59,7 +54,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	it := sclient.Bucket("clamav-241815").Objects(ctx, nil)
+	it := sclient.Bucket("core-eso-bucket").Objects(ctx, nil)
 	for {
 		attrs, err := it.Next()
 		if err == iterator.Done {
