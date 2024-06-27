@@ -8,9 +8,7 @@ import (
 
 	"golang.org/x/oauth2"
 
-	sal "github.com/salrashid123/oauth2/vault"
-
-	"github.com/golang/glog"
+	vaultcredentials "github.com/salrashid123/vault_gcp_credentials"
 
 	"google.golang.org/api/iterator"
 
@@ -24,13 +22,13 @@ var ()
 
 func main() {
 
-	glog.V(2).Infof("======= Init  ========")
+	log.Printf("======= Init  ========")
 
-	tokenSource, err := sal.VaultTokenSource(
-		&sal.VaultTokenConfig{
+	tokenSource, err := vaultcredentials.VaultTokenSource(
+		&vaultcredentials.VaultTokenConfig{
 			VaultToken:  "s.mwkBs0T0jt9rfBZ61mmxzRYi",
 			VaultPath:   "gcp/token/my-token-roleset",
-			VaultCAcert: "../certs/tls-ca-chain.pem",
+			VaultCAcert: "certs/tls-ca-chain.pem",
 			VaultAddr:   "https://vault.domain.com:8200",
 		},
 	)
@@ -44,7 +42,7 @@ func main() {
 	url := "https://storage.googleapis.com/storage/v1/b/core-eso-bucket/o"
 	resp, err := client.Get(url)
 	if err != nil {
-		glog.Fatal(err)
+		log.Fatal(err)
 	}
 	log.Printf("Response: %v", resp.Status)
 

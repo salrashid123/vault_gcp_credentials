@@ -87,7 +87,7 @@ Golang library Hashicorp provides is one of the few "official" libraries for Vau
 
 ```golang
 import (
-        sal "github.com/salrashid123/oauth2/vault"
+        sal "github.com/salrashid123/vault_gcp_credentials"
 )
 
 	tokenSource, err := sal.VaultTokenSource(
